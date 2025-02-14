@@ -42,7 +42,7 @@ A **Python-based Telegram bot** that provides real-time weather forecasts for an
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/Weather-Bot.git
+git clone https://github.com/GhostKX/Weather-Bot.git
 ```
 
 2. Install required dependencies
@@ -61,7 +61,7 @@ API=your-openweathermap-api-key
 
 4. Navigate to the project directory
 ```bash
-cd Telegram-WeatherBot
+cd Weather-Bot
 ```
 
 5. Run the bot
