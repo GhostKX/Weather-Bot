@@ -38,6 +38,7 @@ icon_code = {'01d': '☀️', '02d': '🌤️', '03d': '🌥️', '04d': '☁️
 # 🌬️ 50d.png 💨 🌬️	50n.png 💨	mist
 
 
+# Handler for the /start command
 @bot.message_handler(commands=['start'])
 def start(message):
     user_id = message.chat.id
@@ -45,6 +46,7 @@ def start(message):
     bot.register_next_step_handler(message, start_buttons_variants)
 
 
+# Function to handle the start button variants
 def start_buttons_variants(message):
     user_id = message.chat.id
     if message.text == '🗺️ Search Location':
@@ -81,6 +83,7 @@ def start_buttons_variants(message):
         bot.register_next_step_handler(message, start_buttons_variants)
 
 
+# Function to handle typing city name
 def typing_city_name(message):
     user_id = message.chat.id
     if message.text == '⬅️ Back':
@@ -110,6 +113,7 @@ def typing_city_name(message):
             bot.register_next_step_handler(message, typing_city_name)
 
 
+# Function to handle the type of weather forecast
 def type_of_weather(message):
     user_id = message.chat.id
     if message.text == '⬅️ Back':
@@ -145,6 +149,7 @@ def type_of_weather(message):
         bot.register_next_step_handler(message, type_of_weather)
 
 
+# Function to show today's weather details
 def show_today_weather_details(message, user_id, today_weather_data):
     today_timezone = today_weather_data['timezone']
     now_utc = datetime.now(timezone.utc)
@@ -185,6 +190,7 @@ def show_today_weather_details(message, user_id, today_weather_data):
     bot.register_next_step_handler(message, choose_change_or_continue)
 
 
+# Function to handle the choice between changing location or continuing
 def choose_change_or_continue(message):
     user_id = message.chat.id
     if message.text == '📌 Change location':
@@ -208,6 +214,7 @@ def choose_change_or_continue(message):
         bot.register_next_step_handler(message, type_of_weather)
 
 
+# Function to show tomorrow's weather details
 def show_tomorrow_weather_details(message, user_id, tomorrow_weather):
     today_date = date.today()
     tomorrow_date = today_date + timedelta(days=1)
@@ -305,6 +312,7 @@ def show_tomorrow_weather_details(message, user_id, tomorrow_weather):
     bot.register_next_step_handler(message, choose_change_or_continue)
 
 
+# Function to show 5 days weather forecast
 def show_5_days_weather(message, week_weather):
     user_id = message.chat.id
     today_date_first_day = date.today()
@@ -509,6 +517,7 @@ def show_5_days_weather(message, week_weather):
     bot.register_next_step_handler(message, choose_change_or_continue)
 
 
+# Function to delete error messages
 def delete_error_messages(user_id):
     if len(list_of_error_messages) > 0:
         for error_message in list_of_error_messages:
@@ -516,4 +525,5 @@ def delete_error_messages(user_id):
     list_of_error_messages.clear()
 
 
+# Running the bot infinitely
 bot.infinity_polling()
